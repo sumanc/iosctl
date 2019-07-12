@@ -7,11 +7,14 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		253C6D2922D4F83D00FF690C /* BSICaptureSession.m in Sources */ = {isa = PBXBuildFile; fileRef = 253C6D2822D4F83D00FF690C /* BSICaptureSession.m */; };
 		2543B7FE22C2C874008DC421 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 2543B7FD22C2C874008DC421 /* main.m */; };
 		2543B80622C2C9CB008DC421 /* BSIMain.m in Sources */ = {isa = PBXBuildFile; fileRef = 2543B80522C2C9CB008DC421 /* BSIMain.m */; };
 		2543B82D22C2FDFA008DC421 /* BSIWebServer.m in Sources */ = {isa = PBXBuildFile; fileRef = 2543B82C22C2FDFA008DC421 /* BSIWebServer.m */; };
 		2543B83222C3041D008DC421 /* GCDWebServers.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2543B83122C3041D008DC421 /* GCDWebServers.framework */; };
 		2543B83722C3C840008DC421 /* GCDWebServers.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 2543B83122C3041D008DC421 /* GCDWebServers.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		25BD150D22D90E460097DE12 /* BSIWebClient.m in Sources */ = {isa = PBXBuildFile; fileRef = 25BD150C22D90E460097DE12 /* BSIWebClient.m */; };
+		25BD151222D911A30097DE12 /* libSocketRocketMac.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 25BD151122D911A30097DE12 /* libSocketRocketMac.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -28,6 +31,8 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		253C6D2722D4F83D00FF690C /* BSICaptureSession.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BSICaptureSession.h; sourceTree = "<group>"; };
+		253C6D2822D4F83D00FF690C /* BSICaptureSession.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BSICaptureSession.m; sourceTree = "<group>"; };
 		2543B7FA22C2C874008DC421 /* iosctl */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = iosctl; sourceTree = BUILT_PRODUCTS_DIR; };
 		2543B7FD22C2C874008DC421 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		2543B80422C2C9CB008DC421 /* BSIMain.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BSIMain.h; sourceTree = "<group>"; };
@@ -35,6 +40,12 @@
 		2543B82B22C2FDFA008DC421 /* BSIWebServer.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BSIWebServer.h; sourceTree = "<group>"; };
 		2543B82C22C2FDFA008DC421 /* BSIWebServer.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BSIWebServer.m; sourceTree = "<group>"; };
 		2543B83122C3041D008DC421 /* GCDWebServers.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = GCDWebServers.framework; sourceTree = "<group>"; };
+		255ACA7A22D51E4E00F1A2BB /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		25BD150B22D90E460097DE12 /* BSIWebClient.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BSIWebClient.h; sourceTree = "<group>"; };
+		25BD150C22D90E460097DE12 /* BSIWebClient.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BSIWebClient.m; sourceTree = "<group>"; };
+		25BD150E22D910780097DE12 /* libSocketRocket.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libSocketRocket.a; path = ../../lockit/lockit/SocketRocket/libSocketRocket.a; sourceTree = "<group>"; };
+		25BD151022D911780097DE12 /* SocketRocket */ = {isa = PBXFileReference; lastKnownFileType = folder; path = SocketRocket; sourceTree = "<group>"; };
+		25BD151122D911A30097DE12 /* libSocketRocketMac.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libSocketRocketMac.a; path = iosctl/SocketRocket/libSocketRocketMac.a; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -42,6 +53,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				25BD151222D911A30097DE12 /* libSocketRocketMac.a in Frameworks */,
 				2543B83222C3041D008DC421 /* GCDWebServers.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -69,11 +81,17 @@
 		2543B7FC22C2C874008DC421 /* iosctl */ = {
 			isa = PBXGroup;
 			children = (
+				253C6D2722D4F83D00FF690C /* BSICaptureSession.h */,
+				253C6D2822D4F83D00FF690C /* BSICaptureSession.m */,
 				2543B80422C2C9CB008DC421 /* BSIMain.h */,
 				2543B80522C2C9CB008DC421 /* BSIMain.m */,
+				25BD150B22D90E460097DE12 /* BSIWebClient.h */,
+				25BD150C22D90E460097DE12 /* BSIWebClient.m */,
 				2543B82B22C2FDFA008DC421 /* BSIWebServer.h */,
 				2543B82C22C2FDFA008DC421 /* BSIWebServer.m */,
+				255ACA7A22D51E4E00F1A2BB /* Info.plist */,
 				2543B7FD22C2C874008DC421 /* main.m */,
+				25BD151022D911780097DE12 /* SocketRocket */,
 			);
 			path = iosctl;
 			sourceTree = "<group>";
@@ -82,6 +100,8 @@
 			isa = PBXGroup;
 			children = (
 				2543B83122C3041D008DC421 /* GCDWebServers.framework */,
+				25BD151122D911A30097DE12 /* libSocketRocketMac.a */,
+				25BD150E22D910780097DE12 /* libSocketRocket.a */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -142,7 +162,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				253C6D2922D4F83D00FF690C /* BSICaptureSession.m in Sources */,
 				2543B7FE22C2C874008DC421 /* main.m in Sources */,
+				25BD150D22D90E460097DE12 /* BSIWebClient.m in Sources */,
 				2543B82D22C2FDFA008DC421 /* BSIWebServer.m in Sources */,
 				2543B80622C2C9CB008DC421 /* BSIMain.m in Sources */,
 			);
@@ -185,6 +207,7 @@
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				CODE_SIGN_IDENTITY = "Mac Developer";
 				COPY_PHASE_STRIP = NO;
+				CREATE_INFOPLIST_SECTION_IN_BINARY = YES;
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
@@ -202,6 +225,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
+				INFOPLIST_FILE = /Users/sumancherukuri/Projects/github/iosctl/iosctl/Info.plist;
 				MACOSX_DEPLOYMENT_TARGET = 10.14;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
@@ -244,6 +268,7 @@
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				CODE_SIGN_IDENTITY = "Mac Developer";
 				COPY_PHASE_STRIP = NO;
+				CREATE_INFOPLIST_SECTION_IN_BINARY = YES;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
@@ -255,6 +280,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
+				INFOPLIST_FILE = /Users/sumancherukuri/Projects/github/iosctl/iosctl/Info.plist;
 				MACOSX_DEPLOYMENT_TARGET = 10.14;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
@@ -266,13 +292,22 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CODE_SIGN_STYLE = Automatic;
+				CREATE_INFOPLIST_SECTION_IN_BINARY = YES;
 				DEVELOPMENT_TEAM = U96363L4E2;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",
 				);
-				HEADER_SEARCH_PATHS = "\"$(SRCROOT)/GCDWebServers.framework/Headers\"";
+				HEADER_SEARCH_PATHS = (
+					"\"$(SRCROOT)/GCDWebServers.framework/Headers\"",
+					"\"$(SRCROOT)/../../lockit/lockit/SocketRocket/include\"",
+				);
+				INFOPLIST_FILE = /Users/sumancherukuri/Projects/github/iosctl/iosctl/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "@executable_path/Frameworks";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/iosctl/SocketRocket",
+				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Debug;
@@ -281,13 +316,22 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CODE_SIGN_STYLE = Automatic;
+				CREATE_INFOPLIST_SECTION_IN_BINARY = YES;
 				DEVELOPMENT_TEAM = U96363L4E2;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",
 				);
-				HEADER_SEARCH_PATHS = "\"$(SRCROOT)/GCDWebServers.framework/Headers\"";
+				HEADER_SEARCH_PATHS = (
+					"\"$(SRCROOT)/GCDWebServers.framework/Headers\"",
+					"\"$(SRCROOT)/../../lockit/lockit/SocketRocket/include\"",
+				);
+				INFOPLIST_FILE = /Users/sumancherukuri/Projects/github/iosctl/iosctl/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "@executable_path/Frameworks";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/iosctl/SocketRocket",
+				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Release;

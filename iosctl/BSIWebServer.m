@@ -7,10 +7,12 @@
 //
 
 #import "BSIWebServer.h"
+#import "BSICaptureSession.h"
 #import "GCDWebServerDataResponse.h"
 #import "GCDWebServerURLEncodedFormRequest.h"
 
 @implementation BSIWebServer {
+    
 }
 
 + (BSIWebServer *)sharedInstance {
@@ -31,25 +33,39 @@
     [webServer addDefaultHandlerForMethod:@"GET"
                              requestClass:[GCDWebServerRequest class]
                              processBlock:^GCDWebServerResponse *(GCDWebServerRequest* request) {
-                                 return [GCDWebServerDataResponse responseWithHTML:@"<html><body><p>Hello World</p></body></html>"];
+                                 return [GCDWebServerDataResponse responseWithJSONObject:@{@"Status" : @"0", @"Message" : @"Hello, World!"}];
                              }];
     
     [webServer addHandlerForMethod:@"POST"
                               path:@"/screencast"
                       requestClass:[GCDWebServerURLEncodedFormRequest class]
                       processBlock:^GCDWebServerResponse *(GCDWebServerRequest* request) {
-                          NSString* value = [[(GCDWebServerURLEncodedFormRequest*)request arguments] objectForKey:@"value"];
-//                          NSData *data = [(GCDWebServerURLEncodedFormRequest*)request data];
-//                          NSString *dataString = [NSString stringWithUTF8String:[data bytes]];
-                          NSString* html = [NSString stringWithFormat:@"<html><body><p>%@</p></body></html>", value];
-                          return [GCDWebServerDataResponse responseWithHTML:html];
+                          NSData *data = [(GCDWebServerURLEncodedFormRequest*)request data];
+                          NSError *error;
+                          NSDictionary *dictionary = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingAllowFragments error:&error];
+                          if (error) {
+                              return [GCDWebServerDataResponse responseWithJSONObject:@{@"Status" : @"1", @"Message" : error.localizedDescription}];
+                          }
+                          NSLog(@"%@", dictionary);
+                          NSString *deviceId = [dictionary objectForKey:@"udid"];
+                          if (deviceId == nil) {
+                              return [GCDWebServerDataResponse responseWithJSONObject:@{@"Status" : @"2", @"Message" : @"Missing udid"}];
+                          }
+                          NSInteger fps = [[dictionary objectForKey:@"fps"] integerValue];
+                          if (fps <= 0) {
+                              fps = 10;
+                          }
+                          if (fps > 60) {
+                              fps = 60;
+                          }
+                          NSError *ret = [BSICaptureSession startSession:deviceId fps:fps];
+                          return [GCDWebServerDataResponse responseWithJSONObject:@{@"Status" : ret == nil ? @"4" : @"0", @"Message" : ret == nil ? @"Success" : ret.userInfo}];
                       }];
     [webServer runWithPort:port bonjourName:nil];
 }
 
 - (void)webServerDidStart:(GCDWebServer*)server {
-    printf("***\niosctl Server Started...\n");
-    printf("Visit %s in your web browser\n***\n", [server.serverURL.absoluteString UTF8String]);
+    printf("iosctl Server Started at %s\n", [server.serverURL.absoluteString UTF8String]);
 }
 
 @end
