@@ -61,6 +61,26 @@
                           NSError *ret = [BSICaptureSession startSession:deviceId fps:fps];
                           return [GCDWebServerDataResponse responseWithJSONObject:@{@"Status" : ret == nil ? @"4" : @"0", @"Message" : ret == nil ? @"Success" : ret.userInfo}];
                       }];
+    
+    [webServer addHandlerForMethod:@"POST"
+                              path:@"/stopscreencast"
+                      requestClass:[GCDWebServerURLEncodedFormRequest class]
+                      processBlock:^GCDWebServerResponse *(GCDWebServerRequest* request) {
+                          NSData *data = [(GCDWebServerURLEncodedFormRequest*)request data];
+                          NSError *error;
+                          NSDictionary *dictionary = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingAllowFragments error:&error];
+                          if (error) {
+                              return [GCDWebServerDataResponse responseWithJSONObject:@{@"Status" : @"1", @"Message" : error.localizedDescription}];
+                          }
+                          NSLog(@"%@", dictionary);
+                          NSString *deviceId = [dictionary objectForKey:@"udid"];
+                          if (deviceId == nil) {
+                              return [GCDWebServerDataResponse responseWithJSONObject:@{@"Status" : @"2", @"Message" : @"Missing udid"}];
+                          }
+                          [BSICaptureSession stopSession:deviceId];
+                          return [GCDWebServerDataResponse responseWithJSONObject:@{@"Status" : @"0", @"Message" : @"Success"}];
+                      }];
+    
     [webServer runWithPort:port bonjourName:nil];
 }
 
