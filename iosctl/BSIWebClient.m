@@ -33,12 +33,12 @@
     NSError *error = nil;
     [_srWebSocket sendData:data error:&error];
     if (error) {
-        printf("ERROR: %s\n", [error.localizedDescription UTF8String]);
+        printf("WEBSOCKET ERROR: %s\n", [error.localizedDescription UTF8String]);
     }
 }
 
 - (void)webSocket:(SRWebSocket *)webSocket didFailWithError:(NSError *)error {
-    printf("ERROR: %s\n", [error.localizedDescription UTF8String]);
+    printf("WEBSOCKET ERROR: %s: %s\n", [error.localizedDescription UTF8String], [webSocket.url.absoluteString UTF8String]);
 }
 
 - (void)webSocketDidOpen:(SRWebSocket *)webSocket {

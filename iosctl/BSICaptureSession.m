@@ -48,6 +48,12 @@
         return [[NSError alloc] initWithDomain:@"com.bytesized.iosctl" code:10 userInfo:@{@"Error reason": @"Failed to allow access to capture devices"}];
     }
     AVCaptureDevice *captureDevice = [AVCaptureDevice deviceWithUniqueID:udid];
+    int i = 0;
+    while (captureDevice == nil && i < 5) {
+        [NSThread sleepForTimeInterval:1];
+        captureDevice = [AVCaptureDevice deviceWithUniqueID:udid];
+        i++;
+    }
     if (captureDevice == nil) {
         return [[NSError alloc] initWithDomain:@"com.bytesized.iosctl" code:11 userInfo:@{@"Error reason": [NSString stringWithFormat:@"Device %@ not found", udid]}];
     }
@@ -90,7 +96,7 @@
 //        NSLog(@"dropping %lu", _frameCount);
         return;
     }
-    NSLog(@"got sample buffer");
+//    NSLog(@"got sample buffer");
     NSData *data = [self imageDataFrom:sampleBuffer];
     [[BSIWebClient sharedInstance] sendData:data];
 }

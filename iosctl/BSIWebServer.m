@@ -59,7 +59,7 @@
                               fps = 60;
                           }
                           NSError *ret = [BSICaptureSession startSession:deviceId fps:fps];
-                          return [GCDWebServerDataResponse responseWithJSONObject:@{@"Status" : ret == nil ? @"4" : @"0", @"Message" : ret == nil ? @"Success" : ret.userInfo}];
+                          return [GCDWebServerDataResponse responseWithJSONObject:@{@"Status" : ret == nil ? @"0" : @"4", @"Message" : ret == nil ? @"Success" : ret.userInfo}];
                       }];
     
     [webServer addHandlerForMethod:@"POST"
