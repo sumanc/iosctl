@@ -44,6 +44,8 @@
 - (NSError *) startSession:(NSString *)udid fps:(NSInteger)fps {
     _udid = udid;
     _fps = fps;
+    [self stopSession];
+    
     if ([self allowAccessToScreenCapture] == NO) {
         return [[NSError alloc] initWithDomain:@"com.bytesized.iosctl" code:10 userInfo:@{@"Error reason": @"Failed to allow access to capture devices"}];
     }

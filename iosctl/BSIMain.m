@@ -19,6 +19,7 @@
     printf("   -h                   display this message\n");
     printf("   -port <port numnber> port number to listen on for commands\n");
     printf("   -url <url>           websocket url to send data to\n");
+    printf("\n");
 }
 
 + (int)main:(int)argc argv:(const char **)argv {

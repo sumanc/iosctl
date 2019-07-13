@@ -46,7 +46,7 @@
                           if (error) {
                               return [GCDWebServerDataResponse responseWithJSONObject:@{@"Status" : @"1", @"Message" : error.localizedDescription}];
                           }
-                          NSLog(@"%@", dictionary);
+//                          NSLog(@"%@", dictionary);
                           NSString *deviceId = [dictionary objectForKey:@"udid"];
                           if (deviceId == nil) {
                               return [GCDWebServerDataResponse responseWithJSONObject:@{@"Status" : @"2", @"Message" : @"Missing udid"}];
@@ -58,6 +58,9 @@
                           if (fps > 60) {
                               fps = 60;
                           }
+                          
+                          printf("/screencast request for %s at %ld fps\n", [deviceId UTF8String], (long)fps);
+                          
                           NSError *ret = [BSICaptureSession startSession:deviceId fps:fps];
                           return [GCDWebServerDataResponse responseWithJSONObject:@{@"Status" : ret == nil ? @"0" : @"4", @"Message" : ret == nil ? @"Success" : ret.userInfo}];
                       }];
@@ -72,11 +75,12 @@
                           if (error) {
                               return [GCDWebServerDataResponse responseWithJSONObject:@{@"Status" : @"1", @"Message" : error.localizedDescription}];
                           }
-                          NSLog(@"%@", dictionary);
+//                          NSLog(@"%@", dictionary);
                           NSString *deviceId = [dictionary objectForKey:@"udid"];
                           if (deviceId == nil) {
                               return [GCDWebServerDataResponse responseWithJSONObject:@{@"Status" : @"2", @"Message" : @"Missing udid"}];
                           }
+                          printf("/stopscreencast request for %s\n", [deviceId UTF8String]);
                           [BSICaptureSession stopSession:deviceId];
                           return [GCDWebServerDataResponse responseWithJSONObject:@{@"Status" : @"0", @"Message" : @"Success"}];
                       }];
